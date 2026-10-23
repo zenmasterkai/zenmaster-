@@ -190,7 +190,7 @@ function render(){const m=$("#fm").value,s=$("#fs").value,a=$("#fa").value;const
 let cur,mi=0;
 function paint(){$("#dmain").src=IMG[cur.imgs[mi]];$("#dmain").alt=cur.name;$("#dn").textContent=cur.name;$("#dsub").textContent=cur.sex+" / "+cur.morph;
 $("#dspec").innerHTML=[["Hatch date",cur.hatch],["Size",cur.size],["Genetic",cur.genetic],["Line",cur.line],["Status",cur.status]].map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("");
-$("#dact").innerHTML=cur.status=="Sold"?'<button class="btn" disabled>Sold</button>':`<a class="btn" target="_blank" rel="noopener" href="${wa("Hi Zen Master, I’m interested in "+cur.name+" ("+cur.morph+").")}">${WAI}Inquire</a>`;
+$("#dact").innerHTML=cur.status=="Sold"?'<button class="btn" disabled>Sold</button>':`<a class="btn" target="_blank" rel="noopener" href="${wa("Hi Zen Master, I’m interested in "+cur.name+".")}">${WAI}Inquire</a>`;
 $("#dth").innerHTML=cur.imgs.map((x,i)=>i==mi?"":`<button data-t="${i}" aria-label="Show photo ${i+1}"><img src="${IMG[x]}" alt=""></button>`).join("")}
 let sy=0,lbi=0;
 function lock(){sy=window.scrollY;document.body.style.cssText="position:fixed;top:-"+sy+"px;left:0;right:0;overflow:hidden"}

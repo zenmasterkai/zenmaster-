@@ -54,15 +54,15 @@ select{font:400 .85rem Montserrat,system-ui,sans-serif;padding:.6rem .8rem;backg
 .empty{grid-column:1/-1;color:var(--mu)}
 #modal{position:fixed;inset:0;z-index:50;background:rgba(20,14,10,.62);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))}
 #modal[hidden]{display:none}
-.sheet{position:relative;background:var(--bg);max-width:960px;width:100%;max-height:100%;overflow:auto;padding:26px;border-radius:6px}
+.sheet{position:relative;background:var(--bg);max-width:960px;width:100%;max-height:100%;overflow:hidden;touch-action:none;padding:26px;border-radius:6px}
 .sheet::after{content:"";position:absolute;right:-40px;top:-20px;width:320px;height:320px;background:var(--logo) center/contain no-repeat;opacity:.02;z-index:0;pointer-events:none;border-radius:50%}
 .x{position:absolute;right:12px;top:8px;z-index:2;background:none;border:0;font-size:1.8rem;color:var(--mu);cursor:pointer}
 .det{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
-#dmain{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--cr);border-radius:4px}
+#dmain{display:block;width:auto;max-width:100%;height:auto;max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px);object-fit:contain;background:var(--cr);border-radius:4px}
 .info h2{font-size:1.7rem;margin-bottom:.4rem}.info hr{border:0;border-top:1px solid var(--ln);width:44px;margin:1rem 0}
 dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;margin:0 0 1.6rem}dt{font-weight:500;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mu);align-self:center}dd{margin:0}dd::before{content:": ";color:var(--mu)}
-.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;position:relative;z-index:1}
-.thumbs button{padding:0;border:1px solid var(--ln);background:none;cursor:pointer;border-radius:3px;overflow:hidden}.thumbs img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.thumbs{display:flex;gap:10px;margin-top:16px;position:relative;z-index:1}
+.thumbs button{width:72px;height:72px;padding:0;border:1px solid var(--ln);background:none;cursor:pointer;border-radius:3px;overflow:hidden}.thumbs img{aspect-ratio:1;object-fit:cover;width:100%;height:100%}
 @media(max-width:720px){.det{grid-template-columns:1fr}}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 10px}
 .num{color:var(--mu)}
@@ -108,10 +108,20 @@ body{font-size:15px}
 .fab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:var(--red);color:#fff;z-index:25;box-shadow:0 6px 18px rgba(60,20,20,.3)}.fab svg{width:26px;height:26px}
 footer{padding-bottom:84px}
 }
+@media(max-width:640px){
+.sheet{padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.det{gap:10px}
+#dmain{max-height:calc(92vh - 370px);max-height:calc(92dvh - 370px)}
+.info h2{font-size:1.25rem;margin-bottom:.2rem}.info hr{margin:.55rem 0}
+dl{gap:.25rem 1rem;margin:0 0 .7rem;line-height:1.4}
+#dact .btn{min-height:44px;padding-top:.6rem;padding-bottom:.6rem}
+.thumbs{margin-top:10px}.thumbs button{width:56px;height:56px}
+.hint{display:none}
+}
 </style></head><body>
 <nav><div class="wrap bar">
 <a class="brand" data-go="home" href="#home"><img id="navlogo" alt=""><span class="disp">Zen Master</span></a>
-<div class="links"><a data-go="home" href="#home">Home</a><a data-go="catalog" href="#catalog">Catalog</a><a data-go="contact" href="#contact">Contact</a></div>
+<div class="links"><a data-go="home" href="#home">Home</a><a data-go="collection" href="#collection">Collection</a><a data-go="contact" href="#contact">Contact</a></div>
 <div class="soc"><a class="wa" data-i aria-label="WhatsApp"></a><a class="ig" data-i aria-label="Instagram"></a></div>
 </div></nav>
 <main>
@@ -120,14 +130,14 @@ footer{padding-bottom:84px}
 <p class="lab">Bearded dragon breeder in Indonesia</p>
 <h1 class="disp">Exceptional bearded dragons for true collectors</h1>
 <p class="lead">Browse the dragons we have available, then message us on WhatsApp to reserve yours.</p>
-<div class="row"><a class="btn" data-go="catalog" href="#catalog">View catalog</a><a class="btn o wa" data-i>Chat on WhatsApp</a></div></div></div>
+<div class="row"><a class="btn" data-go="collection" href="#collection">View collection</a><a class="btn o wa" data-i>Chat on WhatsApp</a></div></div></div>
 <div class="about"><h2 class="disp">Your Top Indonesian-Based Bearded Dragon Breeder</h2>
 <p>Zen Master breeds exceptional bearded dragons for true collectors. Every dragon is raised with care, health-checked, and photographed so you can see exactly what you’re getting.</p></div>
 <div class="wrap" id="feat"></div>
 <div class="igs"><h2 class="disp">@zenmasterkai_</h2><a class="ig" aria-label="Zen Master on Instagram"><img id="igimg" alt="Photos from the Zen Master Instagram feed"></a></div>
 </section>
-<section class="pg" id="catalog"><div class="wrap">
-<div class="top"><h1 class="disp">Catalog</h1><p class="lead">Select a dragon to see its details, then tap Inquire to ask about it on WhatsApp.</p></div>
+<section class="pg" id="collection"><div class="wrap">
+<div class="top"><h1 class="disp">Collection</h1><p class="lead">Select a dragon to see its details, then tap Inquire to ask about it on WhatsApp.</p></div>
 <div class="filters">
 <label><span class="lab">Morph</span><select id="fm"></select></label>
 <label><span class="lab">Sex</span><select id="fs"></select></label>
@@ -139,7 +149,7 @@ footer{padding-bottom:84px}
 <p class="num">WhatsApp: +62 812-8248-2959</p>
 <h2 class="sec disp">How to buy through WhatsApp</h2>
 <ol class="steps">
-<li><b>Pick a dragon</b><span>Browse the catalog and tap Inquire on the one you like. WhatsApp opens with your message ready to send.</span></li>
+<li><b>Pick a dragon</b><span>Browse the collection and tap Inquire on the one you like. WhatsApp opens with your message ready to send.</span></li>
 <li><b>Chat with us</b><span>Send the message. We confirm availability and share more photos or videos if you want them.</span></li>
 <li><b>Confirm payment</b><span>We share payment details in the chat. Once your payment is confirmed, your dragon is marked Reserved.</span></li>
 <li><b>Get it delivered</b><span>We pack your dragon, send it with Tiki Express, and share your tracking number.</span></li></ol>
@@ -180,7 +190,7 @@ $("#navlogo").src=IMG.logo;$("#herologo").src=IMG.logo;$("#igimg").src=IMG.ig;
 $$(".wa").forEach(a=>{a.href=wa();a.target="_blank";a.rel="noopener";if(a.hasAttribute("data-i"))a.insertAdjacentHTML("afterbegin",WAI)});
 $$(".ig").forEach(a=>{a.href=IGU;a.target="_blank";a.rel="noopener";if(a.hasAttribute("data-i"))a.insertAdjacentHTML("afterbegin",IGI)});
 function go(p){$$(".pg").forEach(s=>s.classList.toggle("on",s.id==p));$$(".links a").forEach(a=>a.classList.toggle("cur",a.dataset.go==p));window.scrollTo(0,0)}
-function start(){const h=location.hash.slice(1);go(["home","catalog","contact"].includes(h)?h:"home")}
+function start(){let h=location.hash.slice(1);if(h=="catalog")h="collection";go(["home","collection","contact"].includes(h)?h:"home")}
 addEventListener("hashchange",start);start();
 const sl=s=>s.replace(/\s+/g,"");
 const card=d=>`<article class="card ${sl(d.status)}"><button data-id="${d.id}"><img src="${IMG[d.imgs[0]]}" alt="${d.name}, ${d.morph}"><h3 class="disp">${d.name}</h3><p class="lab">${d.sex} / ${d.morph}</p><span class="st ${sl(d.status)}">${d.status}</span></button></article>`;

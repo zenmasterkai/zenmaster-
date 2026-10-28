@@ -192,8 +192,8 @@ function start(){let h=location.hash.slice(1);if(h=="catalog")h="collection";go(
 addEventListener("hashchange",start);start();
 const sl=s=>s.replace(/\s+/g,"");
 const card=d=>`<article class="card ${sl(d.status)}"><button data-id="${d.id}"><img src="${IMG[d.imgs[0]]}" alt="${d.name}, ${d.morph}"><h3 class="disp">${d.name}</h3><p class="lab">${d.sex} / ${d.morph}</p><span class="st ${sl(d.status)}">${d.status}</span></button></article>`;
-const k=D[0];
-$("#feat").innerHTML=`<div class="featc"><img src="${IMG[k.imgs[0]]}" alt="${k.name}, ${k.morph}"><div><p class="lab">${k.sex} / ${k.morph}</p><h2 class="disp">${k.name}</h2><p class="lead">Hatched ${k.hatch}, ${k.size}, ${k.line} line.</p><button class="btn" data-id="${k.id}">View details</button></div></div>`;
+const k=D.find(d=>d.id=="clint");
+$("#feat").innerHTML=`<div class="featc"><img src="${IMG[k.imgs[0]]}" alt="${k.name}, ${k.morph}"><div><p class="lab">${k.sex} / ${k.morph}</p><h2 class="disp">${k.name}</h2><p class="lead">${[k.hatch?"Hatched "+k.hatch:k.age,k.size,k.line?k.line+" line":""].filter(Boolean).join(", ")}.</p><button class="btn" data-id="${k.id}">View details</button></div></div>`;
 const opts=(el,all,key)=>{el.innerHTML=`<option value="">${all}</option>`+[...new Set(D.map(d=>d[key]))].map(v=>`<option>${v}</option>`).join("")};
 opts($("#fm"),"All morphs","morph");opts($("#fs"),"All","sex");opts($("#fa"),"All","status");
 function render(){const m=$("#fm").value,s=$("#fs").value,a=$("#fa").value;const L=D.filter(d=>(!m||d.morph==m)&&(!s||d.sex==s)&&(!a||d.status==a));$("#grid").innerHTML=L.length?L.map(card).join(""):'<p class="empty">No dragons match these filters. Clear a filter to see more.</p>'}

@@ -201,7 +201,7 @@ const k=D.find(d=>d.id=="clint");
 $("#feat").innerHTML=`<div class="featc"><img src="${IMG[k.imgs[0]]}" alt="${k.name}, ${k.morph}"><div><p class="lab">${k.sex} / ${k.morph}</p><h2 class="disp">${k.name}</h2><p class="lead">${[k.hatch?"Hatched "+k.hatch:k.age,k.size,k.line?k.line+" line":""].filter(Boolean).join(", ")}.</p><button class="btn" data-id="${k.id}">View details</button></div></div>`;
 const opts=(el,all,key)=>{el.innerHTML=`<option value="">${all}</option>`+[...new Set(D.map(d=>d[key]))].map(v=>`<option>${v}</option>`).join("")};
 opts($("#fm"),"All morphs","morph");opts($("#fs"),"All","sex");opts($("#fa"),"All","status");
-function render(){const m=$("#fm").value,s=$("#fs").value,a=$("#fa").value;const L=D.filter(d=>(!m||d.morph==m)&&(!s||d.sex==s)&&(!a||d.status==a));$("#grid").innerHTML=L.length?L.map(card).join(""):'<p class="empty">No dragons match these filters. Clear a filter to see more.</p>'}
+function render(){const m=$("#fm").value,s=$("#fs").value,a=$("#fa").value;const R={"Not for sale":0,"Ready Stock":1,Available:1,Reserved:2,Sold:3},r=d=>d.status in R?R[d.status]:1;const L=D.filter(d=>(!m||d.morph==m)&&(!s||d.sex==s)&&(!a||d.status==a)).sort((x,y)=>r(x)-r(y));$("#grid").innerHTML=L.length?L.map(card).join(""):'<p class="empty">No dragons match these filters. Clear a filter to see more.</p>'}
 ["#fm","#fs","#fa"].forEach(i=>$(i).addEventListener("change",render));render();
 let cur,mi=0;
 function paint(){$("#dmain").src=IMG[cur.imgs[mi]];$("#dmain").alt=cur.name;$("#dn").textContent=cur.name;$("#dsub").textContent=cur.sex+" / "+cur.morph;
